@@ -1063,11 +1063,15 @@ td{
           00:00:00
         </div>
 
+        <!-- Corrected: the button remains visible but is disabled. -->
         <button
           id="bonusWithdrawBtn"
           class="primary-btn"
           style="margin-top:25px;"
           type="button"
+          disabled
+          aria-disabled="true"
+          title="Bonus withdrawals are currently disabled"
         >
           Withdraw Bonus
         </button>
@@ -1197,6 +1201,7 @@ td{
 
         </div>
 
+        <!-- Regular withdrawal button remains enabled and functional. -->
         <button
           id="submitWithdrawalBtn"
           class="primary-btn"
@@ -1427,179 +1432,35 @@ let withdrawalInterval = null;
 
 const countryCurrency = {
 
-  Argentina:{
-    code:"ARS",
-    symbol:"$",
-    rate:1500
-  },
-
-  Belize:{
-    code:"BZD",
-    symbol:"BZ$",
-    rate:2
-  },
-
-  Bolivia:{
-    code:"BOB",
-    symbol:"Bs",
-    rate:6.90
-  },
-
-  Chile:{
-    code:"CLP",
-    symbol:"$",
-    rate:950
-  },
-
-  Colombia:{
-    code:"COP",
-    symbol:"$",
-    rate:4000
-  },
-
-  "Costa Rica":{
-    code:"CRC",
-    symbol:"₡",
-    rate:510
-  },
-
-  Cuba:{
-    code:"CUP",
-    symbol:"$",
-    rate:24
-  },
-
-  "Dominican Republic":{
-    code:"DOP",
-    symbol:"RD$",
-    rate:63
-  },
-
-  Ecuador:{
-    code:"USD",
-    symbol:"$",
-    rate:1
-  },
-
-  "El Salvador":{
-    code:"USD",
-    symbol:"$",
-    rate:1
-  },
-
-  "Equatorial Guinea":{
-    code:"XAF",
-    symbol:"FCFA",
-    rate:560
-  },
-
-  Guatemala:{
-    code:"GTQ",
-    symbol:"Q",
-    rate:7.70
-  },
-
-  Honduras:{
-    code:"HNL",
-    symbol:"L",
-    rate:26.5
-  },
-
-  Mexico:{
-    code:"MXN",
-    symbol:"$",
-    rate:18
-  },
-
-  Nicaragua:{
-    code:"NIO",
-    symbol:"C$",
-    rate:36.7
-  },
-
-  Panama:{
-    code:"USD",
-    symbol:"$",
-    rate:1
-  },
-
-  Paraguay:{
-    code:"PYG",
-    symbol:"₲",
-    rate:7800
-  },
-
-  Peru:{
-    code:"PEN",
-    symbol:"S/",
-    rate:3.50
-  },
-
-  Spain:{
-    code:"EUR",
-    symbol:"€",
-    rate:0.85
-  },
-
-  Uruguay:{
-    code:"UYU",
-    symbol:"$U",
-    rate:40
-  },
-
-  Venezuela:{
-    code:"VES",
-    symbol:"Bs.",
-    rate:170
-  },
-
-  Brazil:{
-    code:"BRL",
-    symbol:"R$",
-    rate:5.40
-  },
-
-  Nigeria:{
-    code:"NGN",
-    symbol:"₦",
-    rate:1500
-  },
-
-  "South Africa":{
-    code:"ZAR",
-    symbol:"R",
-    rate:17
-  },
-
-  Kenya:{
-    code:"KES",
-    symbol:"KSh",
-    rate:129
-  },
-
-  Ghana:{
-    code:"GHS",
-    symbol:"GH₵",
-    rate:12
-  },
-
-  Tanzania:{
-    code:"TZS",
-    symbol:"TSh",
-    rate:2500
-  },
-
-  Uganda:{
-    code:"UGX",
-    symbol:"USh",
-    rate:3700
-  },
-
-  Rwanda:{
-    code:"RWF",
-    symbol:"FRw",
-    rate:1450
-  }
+  Argentina:{code:"ARS",symbol:"$",rate:1500},
+  Belize:{code:"BZD",symbol:"BZ$",rate:2},
+  Bolivia:{code:"BOB",symbol:"Bs",rate:6.90},
+  Chile:{code:"CLP",symbol:"$",rate:950},
+  Colombia:{code:"COP",symbol:"$",rate:4000},
+  "Costa Rica":{code:"CRC",symbol:"₡",rate:510},
+  Cuba:{code:"CUP",symbol:"$",rate:24},
+  "Dominican Republic":{code:"DOP",symbol:"RD$",rate:63},
+  Ecuador:{code:"USD",symbol:"$",rate:1},
+  "El Salvador":{code:"USD",symbol:"$",rate:1},
+  "Equatorial Guinea":{code:"XAF",symbol:"FCFA",rate:560},
+  Guatemala:{code:"GTQ",symbol:"Q",rate:7.70},
+  Honduras:{code:"HNL",symbol:"L",rate:26.5},
+  Mexico:{code:"MXN",symbol:"$",rate:18},
+  Nicaragua:{code:"NIO",symbol:"C$",rate:36.7},
+  Panama:{code:"USD",symbol:"$",rate:1},
+  Paraguay:{code:"PYG",symbol:"₲",rate:7800},
+  Peru:{code:"PEN",symbol:"S/",rate:3.50},
+  Spain:{code:"EUR",symbol:"€",rate:0.85},
+  Uruguay:{code:"UYU",symbol:"$U",rate:40},
+  Venezuela:{code:"VES",symbol:"Bs.",rate:170},
+  Brazil:{code:"BRL",symbol:"R$",rate:5.40},
+  Nigeria:{code:"NGN",symbol:"₦",rate:1500},
+  "South Africa":{code:"ZAR",symbol:"R",rate:17},
+  Kenya:{code:"KES",symbol:"KSh",rate:129},
+  Ghana:{code:"GHS",symbol:"GH₵",rate:12},
+  Tanzania:{code:"TZS",symbol:"TSh",rate:2500},
+  Uganda:{code:"UGX",symbol:"USh",rate:3700},
+  Rwanda:{code:"RWF",symbol:"FRw",rate:1450}
 
 };
 
@@ -1608,7 +1469,6 @@ const countryCurrency = {
    ========================================================= */
 
 const countryLanguage = {
-
   Argentina:"es",
   Belize:"en",
   Bolivia:"es",
@@ -1630,18 +1490,14 @@ const countryLanguage = {
   Spain:"es",
   Uruguay:"es",
   Venezuela:"es",
-
   Brazil:"pt",
-
   Nigeria:"en",
   "South Africa":"en",
   Kenya:"en",
   Ghana:"en",
   Tanzania:"en",
   Uganda:"en",
-
   Rwanda:"fr"
-
 };
 
 function getLanguageForCountry(country){
@@ -1654,210 +1510,35 @@ function getLanguageForCountry(country){
 
 const countryBanks = {
 
-  Argentina:[
-    "Banco Nación",
-    "Banco Galicia",
-    "Santander Argentina",
-    "BBVA Argentina"
-  ],
-
-  Belize:[
-    "Atlantic Bank",
-    "Belize Bank",
-    "Heritage Bank",
-    "National Bank of Belize"
-  ],
-
-  Bolivia:[
-    "Banco Nacional de Bolivia",
-    "Banco Mercantil Santa Cruz",
-    "Banco Unión",
-    "Banco Bisa"
-  ],
-
-  Chile:[
-    "Banco de Chile",
-    "BancoEstado",
-    "Banco Santander Chile",
-    "BCI"
-  ],
-
-  Colombia:[
-    "Bancolombia",
-    "Davivienda Colombia",
-    "BBVA Colombia",
-    "Banco de Bogotá"
-  ],
-
-  "Costa Rica":[
-    "Banco Nacional de Costa Rica",
-    "Banco de Costa Rica",
-    "BAC Credomatic",
-    "Scotiabank Costa Rica"
-  ],
-
-  Cuba:[
-    "Banco Nacional de Cuba",
-    "Banco Popular de Ahorro",
-    "Banco Metropolitano"
-  ],
-
-  "Dominican Republic":[
-    "Banco Popular Dominicano",
-    "Banreservas",
-    "Banco BHD",
-    "Scotiabank República Dominicana"
-  ],
-
-  Ecuador:[
-    "Banco Pichincha",
-    "Banco Guayaquil",
-    "Produbanco",
-    "Banco del Pacífico"
-  ],
-
-  "El Salvador":[
-    "Banco Agrícola",
-    "Banco Cuscatlán",
-    "BAC Credomatic",
-    "Davivienda"
-  ],
-
-  "Equatorial Guinea":[
-    "BANGE",
-    "BGFI Bank Guinea Ecuatorial",
-    "CCEI Bank"
-  ],
-
-  Guatemala:[
-    "Banco Industrial",
-    "Banrural",
-    "G&T Continental",
-    "BAC Guatemala"
-  ],
-
-  Honduras:[
-    "Banco Atlántida",
-    "BAC Honduras",
-    "Ficohsa",
-    "Banco de Occidente"
-  ],
-
-  Mexico:[
-    "BBVA México",
-    "Banorte",
-    "Santander",
-    "HSBC México"
-  ],
-
-  Nicaragua:[
-    "BAC Nicaragua",
-    "Banco Lafise",
-    "Banpro",
-    "Banco de Finanzas"
-  ],
-
-  Panama:[
-    "Banco General",
-    "Banistmo",
-    "Global Bank",
-    "BAC Panamá"
-  ],
-
-  Paraguay:[
-    "Banco Nacional de Fomento",
-    "Banco Continental",
-    "Banco Itaú Paraguay",
-    "Sudameris Bank"
-  ],
-
-  Peru:[
-    "Banco de Crédito del Perú (BCP)",
-    "BBVA",
-    "Interbank",
-    "Scotiabank"
-  ],
-
-  Spain:[
-    "Banco Santander",
-    "BBVA",
-    "CaixaBank",
-    "Banco Sabadell"
-  ],
-
-  Uruguay:[
-    "Banco República",
-    "Santander Uruguay",
-    "BBVA Uruguay",
-    "Scotiabank Uruguay"
-  ],
-
-  Venezuela:[
-    "Banco de Venezuela",
-    "Banesco",
-    "Mercantil",
-    "BBVA Provincial"
-  ],
-
-  Brazil:[
-    "Nubank",
-    "Itaú",
-    "Bradesco",
-    "Banco do Brasil"
-  ],
-
-  Nigeria:[
-    "Access Bank",
-    "GTBank",
-    "UBA",
-    "Zenith Bank",
-    "FirstBank",
-    "Fidelity Bank",
-    "Wema Bank"
-  ],
-
-  "South Africa":[
-    "Capitec",
-    "Standard Bank",
-    "FNB",
-    "Absa",
-    "Nedbank"
-  ],
-
-  Kenya:[
-    "KCB",
-    "Equity Bank",
-    "Co-operative Bank",
-    "Absa Kenya"
-  ],
-
-  Ghana:[
-    "GCB Bank",
-    "Ecobank Ghana",
-    "Absa Ghana",
-    "Stanbic Bank Ghana"
-  ],
-
-  Tanzania:[
-    "CRDB Bank",
-    "NMB Bank",
-    "NBC",
-    "Absa Tanzania"
-  ],
-
-  Uganda:[
-    "Stanbic Uganda",
-    "Centenary Bank",
-    "Absa Uganda",
-    "DFCU Bank"
-  ],
-
-  Rwanda:[
-    "Bank of Kigali",
-    "I&M Bank Rwanda",
-    "Equity Bank Rwanda",
-    "BPR Bank Rwanda"
-  ]
+  Argentina:["Banco Nación","Banco Galicia","Santander Argentina","BBVA Argentina"],
+  Belize:["Atlantic Bank","Belize Bank","Heritage Bank","National Bank of Belize"],
+  Bolivia:["Banco Nacional de Bolivia","Banco Mercantil Santa Cruz","Banco Unión","Banco Bisa"],
+  Chile:["Banco de Chile","BancoEstado","Banco Santander Chile","BCI"],
+  Colombia:["Bancolombia","Davivienda Colombia","BBVA Colombia","Banco de Bogotá"],
+  "Costa Rica":["Banco Nacional de Costa Rica","Banco de Costa Rica","BAC Credomatic","Scotiabank Costa Rica"],
+  Cuba:["Banco Nacional de Cuba","Banco Popular de Ahorro","Banco Metropolitano"],
+  "Dominican Republic":["Banco Popular Dominicano","Banreservas","Banco BHD","Scotiabank República Dominicana"],
+  Ecuador:["Banco Pichincha","Banco Guayaquil","Produbanco","Banco del Pacífico"],
+  "El Salvador":["Banco Agrícola","Banco Cuscatlán","BAC Credomatic","Davivienda"],
+  "Equatorial Guinea":["BANGE","BGFI Bank Guinea Ecuatorial","CCEI Bank"],
+  Guatemala:["Banco Industrial","Banrural","G&T Continental","BAC Guatemala"],
+  Honduras:["Banco Atlántida","BAC Honduras","Ficohsa","Banco de Occidente"],
+  Mexico:["BBVA México","Banorte","Santander","HSBC México"],
+  Nicaragua:["BAC Nicaragua","Banco Lafise","Banpro","Banco de Finanzas"],
+  Panama:["Banco General","Banistmo","Global Bank","BAC Panamá"],
+  Paraguay:["Banco Nacional de Fomento","Banco Continental","Banco Itaú Paraguay","Sudameris Bank"],
+  Peru:["Banco de Crédito del Perú (BCP)","BBVA","Interbank","Scotiabank"],
+  Spain:["Banco Santander","BBVA","CaixaBank","Banco Sabadell"],
+  Uruguay:["Banco República","Santander Uruguay","BBVA Uruguay","Scotiabank Uruguay"],
+  Venezuela:["Banco de Venezuela","Banesco","Mercantil","BBVA Provincial"],
+  Brazil:["Nubank","Itaú","Bradesco","Banco do Brasil"],
+  Nigeria:["Access Bank","GTBank","UBA","Zenith Bank","FirstBank","Fidelity Bank","Wema Bank"],
+  "South Africa":["Capitec","Standard Bank","FNB","Absa","Nedbank"],
+  Kenya:["KCB","Equity Bank","Co-operative Bank","Absa Kenya"],
+  Ghana:["GCB Bank","Ecobank Ghana","Absa Ghana","Stanbic Bank Ghana"],
+  Tanzania:["CRDB Bank","NMB Bank","NBC","Absa Tanzania"],
+  Uganda:["Stanbic Uganda","Centenary Bank","Absa Uganda","DFCU Bank"],
+  Rwanda:["Bank of Kigali","I&M Bank Rwanda","Equity Bank Rwanda","BPR Bank Rwanda"]
 
 };
 
@@ -1866,19 +1547,16 @@ const countryBanks = {
    ========================================================= */
 
 function getCurrency(country){
-
   return countryCurrency[country] || {
     code:"USD",
     symbol:"$",
     rate:1
   };
-
 }
 
 function getCurrencyDecimals(user){
 
-  const currency =
-    getCurrency(user && user.country);
+  const currency = getCurrency(user && user.country);
 
   if(
     currency.code === "COP" ||
@@ -1893,92 +1571,43 @@ function getCurrencyDecimals(user){
   }
 
   return 2;
-
 }
 
 function usdToLocal(usdAmount,user){
-
-  const currency =
-    getCurrency(user && user.country);
-
-  return (
-    Number(usdAmount || 0) *
-    Number(currency.rate || 1)
-  );
-
+  const currency = getCurrency(user && user.country);
+  return Number(usdAmount || 0) * Number(currency.rate || 1);
 }
 
 function localToUSD(localAmount,user){
-
-  const currency =
-    getCurrency(user && user.country);
-
-  const rate =
-    Number(currency.rate || 1);
-
-  return (
-    Number(localAmount || 0) / rate
-  );
-
+  const currency = getCurrency(user && user.country);
+  const rate = Number(currency.rate || 1);
+  return Number(localAmount || 0) / rate;
 }
 
 function formatLocalInputAmount(usdAmount,user){
-
-  return usdToLocal(
-    usdAmount,
-    user
-  ).toFixed(
-    getCurrencyDecimals(user)
-  );
-
+  return usdToLocal(usdAmount,user).toFixed(getCurrencyDecimals(user));
 }
 
 function getLocalCurrencyLabel(user){
-
-  const currency =
-    getCurrency(user && user.country);
-
-  return (
-    currency.code +
-    " (" +
-    currency.symbol +
-    ")"
-  );
-
+  const currency = getCurrency(user && user.country);
+  return currency.code + " (" + currency.symbol + ")";
 }
 
 function formatMoney(usdAmount,user){
 
-  const amount =
-    Number(usdAmount || 0);
+  const amount = Number(usdAmount || 0);
+  const currency = getCurrency(user && user.country);
+  const localAmount = amount * currency.rate;
+  const decimals = getCurrencyDecimals(user);
 
-  const currency =
-    getCurrency(user && user.country);
-
-  const localAmount =
-    amount * currency.rate;
-
-  const decimals =
-    getCurrencyDecimals(user);
-
-  return (
-    currency.symbol +
-    localAmount.toLocaleString(
-      undefined,
-      {
-        minimumFractionDigits:decimals,
-        maximumFractionDigits:decimals
-      }
-    )
-  );
-
+  return currency.symbol + localAmount.toLocaleString(undefined,{
+    minimumFractionDigits:decimals,
+    maximumFractionDigits:decimals
+  });
 }
 
 function formatUSD(usdAmount){
-
-  return "$" +
-    Number(usdAmount || 0).toFixed(2);
-
+  return "$" + Number(usdAmount || 0).toFixed(2);
 }
 
 /* =========================================================
@@ -1988,32 +1617,20 @@ function formatUSD(usdAmount){
 function getUsers(){
 
   try{
-
-    return JSON.parse(
-      localStorage.getItem(STORAGE_USERS)
-    ) || [];
-
+    return JSON.parse(localStorage.getItem(STORAGE_USERS)) || [];
   }catch(error){
-
     return [];
-
   }
 
 }
 
 function saveUsers(users){
-
-  localStorage.setItem(
-    STORAGE_USERS,
-    JSON.stringify(users)
-  );
-
+  localStorage.setItem(STORAGE_USERS,JSON.stringify(users));
 }
 
 function getCurrentUser(){
 
-  const id =
-    localStorage.getItem(STORAGE_CURRENT);
+  const id = localStorage.getItem(STORAGE_CURRENT);
 
   if(!id){
     return null;
@@ -2021,9 +1638,7 @@ function getCurrentUser(){
 
   const users = getUsers();
 
-  return users.find(
-    user => user.id === id
-  ) || null;
+  return users.find(user => user.id === id) || null;
 
 }
 
@@ -2034,11 +1649,7 @@ function saveCurrentUser(user){
   }
 
   const users = getUsers();
-
-  const index =
-    users.findIndex(
-      item => item.id === user.id
-    );
+  const index = users.findIndex(item => item.id === user.id);
 
   if(index !== -1){
     users[index] = user;
@@ -2047,11 +1658,7 @@ function saveCurrentUser(user){
   }
 
   saveUsers(users);
-
-  localStorage.setItem(
-    STORAGE_CURRENT,
-    user.id
-  );
+  localStorage.setItem(STORAGE_CURRENT,user.id);
 
 }
 
@@ -2060,11 +1667,7 @@ function saveCurrentUser(user){
    ========================================================= */
 
 function generateRandomBonus(){
-
-  return Math.floor(
-    Math.random() * (3400 - 600 + 1)
-  ) + 600;
-
+  return Math.floor(Math.random() * (3400 - 600 + 1)) + 600;
 }
 
 /* =========================================================
@@ -2074,52 +1677,32 @@ function generateRandomBonus(){
 function createUser(name,email,password,country){
 
   const users = getUsers();
+  const normalizedEmail = email.trim().toLowerCase();
 
-  const normalizedEmail =
-    email.trim().toLowerCase();
-
-  const existing =
-    users.find(
-      user =>
-        String(user.email || "").toLowerCase() ===
-        normalizedEmail
-    );
+  const existing = users.find(
+    user => String(user.email || "").toLowerCase() === normalizedEmail
+  );
 
   if(existing){
-
-    alert(
-      "An account with this email already exists."
-    );
-
+    alert("An account with this email already exists.");
     return null;
-
   }
 
-  const randomBonus =
-    generateRandomBonus();
-
-  const userLanguage =
-    getLanguageForCountry(country);
+  const randomBonus = generateRandomBonus();
+  const userLanguage = getLanguageForCountry(country);
 
   const user = {
 
-    id:
-      "USR-" +
+    id:"USR-" +
       Date.now().toString(36).toUpperCase() +
-      Math.random()
-        .toString(36)
-        .substring(2,6)
-        .toUpperCase(),
+      Math.random().toString(36).substring(2,6).toUpperCase(),
 
     name:name.trim(),
     email:normalizedEmail,
     password:password,
     country:country,
-
     language:userLanguage,
-
     balance:0,
-
     bonusBalance:randomBonus,
 
     miner:{
@@ -2139,20 +1722,11 @@ function createUser(name,email,password,country){
   };
 
   users.push(user);
-
   saveUsers(users);
 
-  localStorage.setItem(
-    STORAGE_CURRENT,
-    user.id
-  );
-
+  localStorage.setItem(STORAGE_CURRENT,user.id);
   currentLanguage = userLanguage;
-
-  localStorage.setItem(
-    STORAGE_LANG,
-    userLanguage
-  );
+  localStorage.setItem(STORAGE_LANG,userLanguage);
 
   alert(
     "Account created successfully. Your registration bonus is " +
@@ -2186,14 +1760,8 @@ function repairUser(user){
     user.country = "Ecuador";
   }
 
-  if(
-    !user.language ||
-    !translations[user.language]
-  ){
-
-    user.language =
-      getLanguageForCountry(user.country);
-
+  if(!user.language || !translations[user.language]){
+    user.language = getLanguageForCountry(user.country);
   }
 
   if(
@@ -2211,7 +1779,6 @@ function repairUser(user){
   }
 
   if(!user.miner){
-
     user.miner = {
       running:false,
       amount:0,
@@ -2223,7 +1790,6 @@ function repairUser(user){
       endTime:null,
       proofName:""
     };
-
   }
 
   if(!Array.isArray(user.transactions)){
@@ -2231,7 +1797,6 @@ function repairUser(user){
   }
 
   saveCurrentUser(user);
-
   return user;
 
 }
@@ -2244,31 +1809,15 @@ function showAuth(mode){
 
   authMode = mode;
 
-  document
-    .getElementById("authPage")
-    .classList.remove("hidden");
+  document.getElementById("authPage").classList.remove("hidden");
+  document.getElementById("app").classList.add("hidden");
 
-  document
-    .getElementById("app")
-    .classList.add("hidden");
-
-  const nameGroup =
-    document.getElementById("nameGroup");
-
-  const countryGroup =
-    document.getElementById("countryGroup");
-
-  const subtitle =
-    document.getElementById("authSubtitle");
-
-  const submit =
-    document.getElementById("authSubmit");
-
-  const switchText =
-    document.getElementById("authSwitchText");
-
-  const switchButton =
-    document.getElementById("authSwitch");
+  const nameGroup = document.getElementById("nameGroup");
+  const countryGroup = document.getElementById("countryGroup");
+  const subtitle = document.getElementById("authSubtitle");
+  const submit = document.getElementById("authSubmit");
+  const switchText = document.getElementById("authSwitchText");
+  const switchButton = document.getElementById("authSwitch");
 
   if(mode === "register"){
 
@@ -2278,17 +1827,10 @@ function showAuth(mode){
     document.getElementById("authName").required = true;
     document.getElementById("authCountry").required = true;
 
-    subtitle.textContent =
-      getText("authRegisterSubtitle");
-
-    submit.textContent =
-      getText("createAccount");
-
-    switchText.textContent =
-      getText("alreadyAccount");
-
-    switchButton.textContent =
-      getText("login");
+    subtitle.textContent = getText("authRegisterSubtitle");
+    submit.textContent = getText("createAccount");
+    switchText.textContent = getText("alreadyAccount");
+    switchButton.textContent = getText("login");
 
   }else{
 
@@ -2298,17 +1840,10 @@ function showAuth(mode){
     document.getElementById("authName").required = false;
     document.getElementById("authCountry").required = false;
 
-    subtitle.textContent =
-      getText("authLoginSubtitle");
-
-    submit.textContent =
-      getText("login");
-
-    switchText.textContent =
-      getText("noAccount");
-
-    switchButton.textContent =
-      getText("register");
+    subtitle.textContent = getText("authLoginSubtitle");
+    submit.textContent = getText("login");
+    switchText.textContent = getText("noAccount");
+    switchButton.textContent = getText("register");
 
   }
 
@@ -2316,163 +1851,88 @@ function showAuth(mode){
 
 function enterApp(){
 
-  const user =
-    repairUser(getCurrentUser());
+  const user = repairUser(getCurrentUser());
 
   if(!user){
-
     showAuth("login");
-
     return;
-
   }
 
-  const countryLang =
-    getLanguageForCountry(user.country);
+  const countryLang = getLanguageForCountry(user.country);
 
   user.language = countryLang;
-
   saveCurrentUser(user);
 
   currentLanguage = countryLang;
+  localStorage.setItem(STORAGE_LANG,countryLang);
 
-  localStorage.setItem(
-    STORAGE_LANG,
-    countryLang
-  );
-
-  document
-    .getElementById("authPage")
-    .classList.add("hidden");
-
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
+  document.getElementById("authPage").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
 
   applyLanguage(countryLang);
-
   renderAll();
-
   startBonusTimer();
   startWithdrawalStatusTimer();
 
 }
 
-document
-  .getElementById("authSwitch")
-  .addEventListener("click",() => {
+document.getElementById("authSwitch").addEventListener("click",() => {
+  showAuth(authMode === "register" ? "login" : "register");
+});
 
-    showAuth(
-      authMode === "register"
-        ? "login"
-        : "register"
-    );
+document.getElementById("authForm").addEventListener("submit",event => {
 
-  });
+  event.preventDefault();
 
-document
-  .getElementById("authForm")
-  .addEventListener("submit",event => {
+  const name = document.getElementById("authName").value;
+  const email = document.getElementById("authEmail").value;
+  const password = document.getElementById("authPassword").value;
+  const country = document.getElementById("authCountry").value;
 
-    event.preventDefault();
+  if(authMode === "register"){
 
-    const name =
-      document.getElementById("authName").value;
-
-    const email =
-      document.getElementById("authEmail").value;
-
-    const password =
-      document.getElementById("authPassword").value;
-
-    const country =
-      document.getElementById("authCountry").value;
-
-    if(authMode === "register"){
-
-      if(
-        !name.trim() ||
-        !email.trim() ||
-        !password.trim() ||
-        !country
-      ){
-
-        alert(
-          getText("completeRegistration")
-        );
-
-        return;
-
-      }
-
-      const user =
-        createUser(
-          name,
-          email,
-          password,
-          country
-        );
-
-      if(user){
-
-        applyLanguage(
-          getLanguageForCountry(user.country)
-        );
-
-        enterApp();
-
-      }
-
-    }else{
-
-      const users = getUsers();
-
-      const normalizedEmail =
-        email.trim().toLowerCase();
-
-      const user =
-        users.find(
-          item =>
-            String(item.email || "").toLowerCase() ===
-            normalizedEmail &&
-            item.password === password
-        );
-
-      if(!user){
-
-        alert(
-          getText("incorrectLogin")
-        );
-
-        return;
-
-      }
-
-      user.language =
-        getLanguageForCountry(user.country);
-
-      repairUser(user);
-
-      localStorage.setItem(
-        STORAGE_CURRENT,
-        user.id
-      );
-
-      currentLanguage =
-        user.language;
-
-      localStorage.setItem(
-        STORAGE_LANG,
-        user.language
-      );
-
-      applyLanguage(user.language);
-
-      enterApp();
-
+    if(!name.trim() || !email.trim() || !password.trim() || !country){
+      alert(getText("completeRegistration"));
+      return;
     }
 
-  });
+    const user = createUser(name,email,password,country);
+
+    if(user){
+      applyLanguage(getLanguageForCountry(user.country));
+      enterApp();
+    }
+
+  }else{
+
+    const users = getUsers();
+    const normalizedEmail = email.trim().toLowerCase();
+
+    const user = users.find(
+      item =>
+        String(item.email || "").toLowerCase() === normalizedEmail &&
+        item.password === password
+    );
+
+    if(!user){
+      alert(getText("incorrectLogin"));
+      return;
+    }
+
+    user.language = getLanguageForCountry(user.country);
+    repairUser(user);
+
+    localStorage.setItem(STORAGE_CURRENT,user.id);
+
+    currentLanguage = user.language;
+    localStorage.setItem(STORAGE_LANG,user.language);
+
+    applyLanguage(user.language);
+    enterApp();
+
+  }
+
+});
 
 /* =========================================================
    TRANSLATIONS
@@ -2890,45 +2350,25 @@ function applyLanguage(lang){
   }
 
   currentLanguage = lang;
-
-  localStorage.setItem(
-    STORAGE_LANG,
-    lang
-  );
-
+  localStorage.setItem(STORAGE_LANG,lang);
   document.documentElement.lang = lang;
 
-  document
-    .querySelectorAll(".lang-btn")
-    .forEach(btn => {
-
-      btn.classList.toggle(
-        "active",
-        btn.dataset.lang === lang
-      );
-
-    });
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.classList.toggle("active",btn.dataset.lang === lang);
+  });
 
   const setText = (id,key) => {
-
-    const el =
-      document.getElementById(id);
-
+    const el = document.getElementById(id);
     if(el){
       el.textContent = getText(key);
     }
-
   };
 
   const setPlaceholder = (id,key) => {
-
-    const el =
-      document.getElementById(id);
-
+    const el = document.getElementById(id);
     if(el){
       el.placeholder = getText(key);
     }
-
   };
 
   setText("navDashboard","dashboard");
@@ -3014,19 +2454,14 @@ function applyLanguage(lang){
   setPlaceholder("withdrawAccount","accountNumberPlaceholder");
   setPlaceholder("withdrawName","accountHolderPlaceholder");
 
-  const withdrawalUser =
-    getCurrentUser();
-
-  const withdrawalInput =
-    document.getElementById("withdrawAmount");
+  const withdrawalUser = getCurrentUser();
+  const withdrawalInput = document.getElementById("withdrawAmount");
 
   if(withdrawalInput){
 
-    const currency =
-      getCurrency(
-        withdrawalUser &&
-        withdrawalUser.country
-      );
+    const currency = getCurrency(
+      withdrawalUser && withdrawalUser.country
+    );
 
     withdrawalInput.placeholder =
       getText("enterAmount") +
@@ -3036,20 +2471,16 @@ function applyLanguage(lang){
 
   }
 
-  const countrySelect =
-    document.getElementById("authCountry");
+  const countrySelect = document.getElementById("authCountry");
 
   if(countrySelect && countrySelect.options[0]){
-    countrySelect.options[0].textContent =
-      getText("selectCountry");
+    countrySelect.options[0].textContent = getText("selectCountry");
   }
 
-  const bankSelect =
-    document.getElementById("withdrawBank");
+  const bankSelect = document.getElementById("withdrawBank");
 
   if(bankSelect && bankSelect.options[0]){
-    bankSelect.options[0].textContent =
-      getText("selectBank");
+    bankSelect.options[0].textContent = getText("selectBank");
   }
 
   updateAuthLanguage();
@@ -3061,46 +2492,24 @@ function applyLanguage(lang){
 function updateAuthLanguage(){
 
   const mode = authMode;
-
-  const subtitle =
-    document.getElementById("authSubtitle");
-
-  const submit =
-    document.getElementById("authSubmit");
-
-  const switchText =
-    document.getElementById("authSwitchText");
-
-  const switchButton =
-    document.getElementById("authSwitch");
+  const subtitle = document.getElementById("authSubtitle");
+  const submit = document.getElementById("authSubmit");
+  const switchText = document.getElementById("authSwitchText");
+  const switchButton = document.getElementById("authSwitch");
 
   if(mode === "register"){
 
-    subtitle.textContent =
-      getText("authRegisterSubtitle");
-
-    submit.textContent =
-      getText("createAccount");
-
-    switchText.textContent =
-      getText("alreadyAccount");
-
-    switchButton.textContent =
-      getText("login");
+    subtitle.textContent = getText("authRegisterSubtitle");
+    submit.textContent = getText("createAccount");
+    switchText.textContent = getText("alreadyAccount");
+    switchButton.textContent = getText("login");
 
   }else{
 
-    subtitle.textContent =
-      getText("authLoginSubtitle");
-
-    submit.textContent =
-      getText("login");
-
-    switchText.textContent =
-      getText("noAccount");
-
-    switchButton.textContent =
-      getText("register");
+    subtitle.textContent = getText("authLoginSubtitle");
+    submit.textContent = getText("login");
+    switchText.textContent = getText("noAccount");
+    switchButton.textContent = getText("register");
 
   }
 
@@ -3108,15 +2517,13 @@ function updateAuthLanguage(){
 
 function updatePageLanguage(){
 
-  const page =
-    document.querySelector(".page:not(.hidden)");
+  const page = document.querySelector(".page:not(.hidden)");
 
   if(!page){
     return;
   }
 
-  const pageId =
-    page.id.replace("page-","");
+  const pageId = page.id.replace("page-","");
 
   const titleMap = {
     dashboard:"dashboard",
@@ -3136,15 +2543,11 @@ function updatePageLanguage(){
     settings:"accountPreferences"
   };
 
-  document
-    .getElementById("pageTitle")
-    .textContent =
-      getText(titleMap[pageId]);
+  document.getElementById("pageTitle").textContent =
+    getText(titleMap[pageId]);
 
-  document
-    .getElementById("pageSubtitle")
-    .textContent =
-      getText(subtitleMap[pageId]);
+  document.getElementById("pageSubtitle").textContent =
+    getText(subtitleMap[pageId]);
 
 }
 
@@ -3154,77 +2557,35 @@ function updatePageLanguage(){
 
 const pageNames = {
 
-  dashboard:{
-    titleKey:"dashboard",
-    subtitleKey:"welcome"
-  },
-
-  miner:{
-    titleKey:"miner",
-    subtitleKey:"manageMining"
-  },
-
-  bonus:{
-    titleKey:"bonus",
-    subtitleKey:"registrationBonus"
-  },
-
-  withdrawal:{
-    titleKey:"withdrawal",
-    subtitleKey:"withdrawAvailable"
-  },
-
-  history:{
-    titleKey:"history",
-    subtitleKey:"transactionHistory"
-  },
-
-  settings:{
-    titleKey:"settings",
-    subtitleKey:"accountPreferences"
-  }
+  dashboard:{titleKey:"dashboard",subtitleKey:"welcome"},
+  miner:{titleKey:"miner",subtitleKey:"manageMining"},
+  bonus:{titleKey:"bonus",subtitleKey:"registrationBonus"},
+  withdrawal:{titleKey:"withdrawal",subtitleKey:"withdrawAvailable"},
+  history:{titleKey:"history",subtitleKey:"transactionHistory"},
+  settings:{titleKey:"settings",subtitleKey:"accountPreferences"}
 
 };
 
 function showPage(page){
 
-  document
-    .querySelectorAll(".page")
-    .forEach(section => {
-      section.classList.add("hidden");
-    });
+  document.querySelectorAll(".page").forEach(section => {
+    section.classList.add("hidden");
+  });
 
-  const selected =
-    document.getElementById("page-" + page);
+  const selected = document.getElementById("page-" + page);
 
   if(selected){
     selected.classList.remove("hidden");
   }
 
-  document
-    .querySelectorAll(".nav-item,.mobile-nav button")
-    .forEach(button => {
+  document.querySelectorAll(".nav-item,.mobile-nav button").forEach(button => {
+    button.classList.toggle("active",button.dataset.page === page);
+  });
 
-      button.classList.toggle(
-        "active",
-        button.dataset.page === page
-      );
+  const info = pageNames[page] || pageNames.dashboard;
 
-    });
-
-  const info =
-    pageNames[page] ||
-    pageNames.dashboard;
-
-  document
-    .getElementById("pageTitle")
-    .textContent =
-      getText(info.titleKey);
-
-  document
-    .getElementById("pageSubtitle")
-    .textContent =
-      getText(info.subtitleKey);
+  document.getElementById("pageTitle").textContent = getText(info.titleKey);
+  document.getElementById("pageSubtitle").textContent = getText(info.subtitleKey);
 
   if(page === "dashboard") updateDashboard();
   if(page === "miner") renderMiner();
@@ -3234,15 +2595,11 @@ function showPage(page){
 
 }
 
-document
-  .querySelectorAll(".nav-item,.mobile-nav button")
-  .forEach(button => {
-
-    button.addEventListener("click",() => {
-      showPage(button.dataset.page);
-    });
-
+document.querySelectorAll(".nav-item,.mobile-nav button").forEach(button => {
+  button.addEventListener("click",() => {
+    showPage(button.dataset.page);
   });
+});
 
 /* =========================================================
    DASHBOARD
@@ -3250,27 +2607,18 @@ document
 
 function getLiveMiningEarnings(user){
 
-  if(
-    !user ||
-    !user.miner ||
-    !user.miner.running
-  ){
+  if(!user || !user.miner || !user.miner.running){
     return 0;
   }
 
   const now = Date.now();
 
-  const elapsed =
-    Math.max(
-      0,
-      Math.min(
-        now - user.miner.startTime,
-        MINING_DURATION
-      )
-    );
+  const elapsed = Math.max(
+    0,
+    Math.min(now - user.miner.startTime,MINING_DURATION)
+  );
 
-  const progress =
-    elapsed / MINING_DURATION;
+  const progress = elapsed / MINING_DURATION;
 
   return Number(user.miner.target || 0) * progress;
 
@@ -3288,15 +2636,13 @@ function getAvailableBalance(user){
 
 function updateDashboard(){
 
-  const user =
-    repairUser(getCurrentUser());
+  const user = repairUser(getCurrentUser());
 
   if(!user){
     return;
   }
 
-  const available =
-    getAvailableBalance(user);
+  const available = getAvailableBalance(user);
 
   document.getElementById("dashboardBalance").textContent =
     formatMoney(available,user);
@@ -3323,15 +2669,10 @@ function updateDashboard(){
     user.name || "User";
 
   document.getElementById("userAvatar").textContent =
-    (user.name || "U")
-      .trim()
-      .charAt(0)
-      .toUpperCase();
+    (user.name || "U").trim().charAt(0).toUpperCase();
 
   document.getElementById("overviewMiningStatus").textContent =
-    user.miner.running
-      ? getText("miningActive")
-      : getText("notRunning");
+    user.miner.running ? getText("miningActive") : getText("notRunning");
 
 }
 
@@ -3345,49 +2686,32 @@ function startMinerTimer(){
     clearInterval(minerInterval);
   }
 
-  minerInterval =
-    setInterval(() => {
+  minerInterval = setInterval(() => {
 
-      const user = getCurrentUser();
+    const user = getCurrentUser();
 
-      if(!user){
+    if(!user){
+      clearInterval(minerInterval);
+      return;
+    }
 
-        clearInterval(minerInterval);
-
-        return;
-
-      }
-
-      if(
-        !user.miner ||
-        !user.miner.running
-      ){
-
-        renderMiner();
-        updateDashboard();
-
-        return;
-
-      }
-
-      if(
-        Date.now() >=
-        Number(user.miner.endTime)
-      ){
-
-        settleMining(user);
-
-        renderMiner();
-        updateDashboard();
-
-        return;
-
-      }
-
+    if(!user.miner || !user.miner.running){
       renderMiner();
       updateDashboard();
+      return;
+    }
 
-    },1000);
+    if(Date.now() >= Number(user.miner.endTime)){
+      settleMining(user);
+      renderMiner();
+      updateDashboard();
+      return;
+    }
+
+    renderMiner();
+    updateDashboard();
+
+  },1000);
 
 }
 
@@ -3401,14 +2725,9 @@ function renderMiner(){
 
   const m = user.miner;
 
-  const amountInput =
-    document.getElementById("minerAmount");
-
-  const proofInput =
-    document.getElementById("minerProof");
-
-  const startButton =
-    document.getElementById("startMiningBtn");
+  const amountInput = document.getElementById("minerAmount");
+  const proofInput = document.getElementById("minerProof");
+  const startButton = document.getElementById("startMiningBtn");
 
   if(m.running){
 
@@ -3422,23 +2741,17 @@ function renderMiner(){
     document.getElementById("minerTargetDisplay").textContent =
       formatMoney(m.target,user);
 
-    const earnings =
-      getLiveMiningEarnings(user);
+    const earnings = getLiveMiningEarnings(user);
 
     document.getElementById("minerEarningsDisplay").textContent =
       formatMoney(earnings,user);
 
-    const elapsed =
-      Math.max(
-        0,
-        Math.min(
-          Date.now() - m.startTime,
-          MINING_DURATION
-        )
-      );
+    const elapsed = Math.max(
+      0,
+      Math.min(Date.now() - m.startTime,MINING_DURATION)
+    );
 
-    const progress =
-      elapsed / MINING_DURATION;
+    const progress = elapsed / MINING_DURATION;
 
     document.getElementById("minerProgress").style.width =
       Math.min(100,progress * 100) + "%";
@@ -3446,18 +2759,12 @@ function renderMiner(){
     document.getElementById("minerProgressText").textContent =
       Math.floor(progress * 100) + "%";
 
-    const remaining =
-      Math.max(
-        0,
-        m.endTime - Date.now()
-      );
+    const remaining = Math.max(0,m.endTime - Date.now());
 
     document.getElementById("minerTimer").textContent =
       formatDuration(remaining);
 
-    document
-      .getElementById("minerLockMessage")
-      .classList.add("show");
+    document.getElementById("minerLockMessage").classList.add("show");
 
     document.getElementById("proofName").textContent =
       m.proofName
@@ -3487,12 +2794,9 @@ function renderMiner(){
   document.getElementById("minerProgressText").textContent =
     Math.floor(Number(m.progress || 0) * 100) + "%";
 
-  document.getElementById("minerTimer").textContent =
-    "48:00:00";
+  document.getElementById("minerTimer").textContent = "48:00:00";
 
-  document
-    .getElementById("minerLockMessage")
-    .classList.remove("show");
+  document.getElementById("minerLockMessage").classList.remove("show");
 
   document.getElementById("proofName").textContent =
     m.proofName
@@ -3503,22 +2807,10 @@ function renderMiner(){
 
 function formatDuration(ms){
 
-  const totalSeconds =
-    Math.max(
-      0,
-      Math.floor(ms / 1000)
-    );
-
-  const hours =
-    Math.floor(totalSeconds / 3600);
-
-  const minutes =
-    Math.floor(
-      (totalSeconds % 3600) / 60
-    );
-
-  const seconds =
-    totalSeconds % 60;
+  const totalSeconds = Math.max(0,Math.floor(ms / 1000));
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
 
   return (
     String(hours).padStart(2,"0") +
@@ -3532,20 +2824,13 @@ function formatDuration(ms){
 
 function settleMining(user){
 
-  if(
-    !user ||
-    !user.miner ||
-    !user.miner.running
-  ){
+  if(!user || !user.miner || !user.miner.running){
     return;
   }
 
-  const finalEarnings =
-    Number(user.miner.target || 0);
+  const finalEarnings = Number(user.miner.target || 0);
 
-  user.balance =
-    Number(user.balance || 0) +
-    finalEarnings;
+  user.balance = Number(user.balance || 0) + finalEarnings;
 
   user.miner.earnings = 0;
   user.miner.running = false;
@@ -3565,52 +2850,28 @@ function startMining(){
   }
 
   if(user.miner.running){
-
     renderMiner();
-
     return;
-
   }
 
-  const amountInput =
-    document.getElementById("minerAmount");
-
-  const proofInput =
-    document.getElementById("minerProof");
-
-  const amount =
-    Number(amountInput.value);
+  const amountInput = document.getElementById("minerAmount");
+  const proofInput = document.getElementById("minerProof");
+  const amount = Number(amountInput.value);
 
   if(!amount || amount < 25){
-
-    alert(
-      getText("minMiningAlert")
-    );
-
+    alert(getText("minMiningAlert"));
     return;
-
   }
 
-  if(
-    !proofInput.files ||
-    !proofInput.files.length
-  ){
-
-    alert(
-      getText("proofRequired")
-    );
-
+  if(!proofInput.files || !proofInput.files.length){
+    alert(getText("proofRequired"));
     return;
-
   }
 
   const startTime = Date.now();
-
-  const endTime =
-    startTime + MINING_DURATION;
+  const endTime = startTime + MINING_DURATION;
 
   user.miner = {
-
     running:true,
     amount:amount,
     target:amount * 10,
@@ -3620,41 +2881,31 @@ function startMining(){
     startTime:startTime,
     endTime:endTime,
     proofName:proofInput.files[0].name
-
   };
 
   saveCurrentUser(user);
 
   amountInput.disabled = true;
   proofInput.disabled = true;
-
-  document
-    .getElementById("startMiningBtn")
-    .disabled = true;
+  document.getElementById("startMiningBtn").disabled = true;
 
   renderMiner();
   startMinerTimer();
 
 }
 
-document
-  .getElementById("startMiningBtn")
-  .addEventListener("click",startMining);
+document.getElementById("startMiningBtn").addEventListener("click",startMining);
 
-document
-  .getElementById("minerProof")
-  .addEventListener("change",event => {
+document.getElementById("minerProof").addEventListener("change",event => {
 
-    const file =
-      event.target.files &&
-      event.target.files[0];
+  const file = event.target.files && event.target.files[0];
 
-    document.getElementById("proofName").textContent =
-      file
-        ? getText("proof") + " " + file.name
-        : getText("noProof");
+  document.getElementById("proofName").textContent =
+    file
+      ? getText("proof") + " " + file.name
+      : getText("noProof");
 
-  });
+});
 
 /* =========================================================
    BONUS
@@ -3678,13 +2929,11 @@ function renderBonus(){
 function updateBonusCountdown(){
 
   const now = new Date();
-
   const tomorrow = new Date();
 
   tomorrow.setHours(24,0,0,0);
 
-  const remaining =
-    tomorrow.getTime() - now.getTime();
+  const remaining = tomorrow.getTime() - now.getTime();
 
   document.getElementById("bonusCountdown").textContent =
     formatDuration(remaining);
@@ -3698,46 +2947,15 @@ function startBonusTimer(){
   }
 
   updateBonusCountdown();
-
-  bonusInterval =
-    setInterval(updateBonusCountdown,1000);
+  bonusInterval = setInterval(updateBonusCountdown,1000);
 
 }
 
-document
-  .getElementById("bonusWithdrawBtn")
-  .addEventListener("click",() => {
-
-    const user = getCurrentUser();
-
-    if(!user){
-      return;
-    }
-
-    if(Number(user.bonusBalance || 0) <= 0){
-
-      alert(
-        getText("noBonus")
-      );
-
-      return;
-
-    }
-
-    document.getElementById("withdrawSource").value =
-      "bonus";
-
-    document.getElementById("withdrawAmount").value =
-      formatLocalInputAmount(
-        Number(user.bonusBalance || 0),
-        user
-      );
-
-    showPage("withdrawal");
-
-    updateWithdrawalCalculation();
-
-  });
+/*
+  The bonus withdrawal button is disabled in the HTML.
+  This listener is intentionally not attached, so the bonus button
+  cannot redirect the user into the withdrawal form.
+*/
 
 /* =========================================================
    WITHDRAWAL
@@ -3745,8 +2963,7 @@ document
 
 function getSelectedWithdrawalFee(){
 
-  const source =
-    document.getElementById("withdrawSource").value;
+  const source = document.getElementById("withdrawSource").value;
 
   return source === "bonus"
     ? BONUS_WITHDRAWAL_FEE
@@ -3757,11 +2974,7 @@ function getSelectedWithdrawalFee(){
 function getWithdrawalBalance(user,source){
 
   if(source === "bonus"){
-
-    return Number(
-      user.bonusBalance || 0
-    );
-
+    return Number(user.bonusBalance || 0);
   }
 
   return (
@@ -3792,31 +3005,21 @@ function updateBankOptions(){
     return;
   }
 
-  const bankSelect =
-    document.getElementById("withdrawBank");
-
-  const currentValue =
-    bankSelect.value;
-
-  const banks =
-    countryBanks[user.country] || [];
+  const bankSelect = document.getElementById("withdrawBank");
+  const currentValue = bankSelect.value;
+  const banks = countryBanks[user.country] || [];
 
   bankSelect.innerHTML = "";
 
-  const first =
-    document.createElement("option");
-
+  const first = document.createElement("option");
   first.value = "";
-
-  first.textContent =
-    getText("selectBank");
+  first.textContent = getText("selectBank");
 
   bankSelect.appendChild(first);
 
   banks.forEach(bank => {
 
-    const option =
-      document.createElement("option");
+    const option = document.createElement("option");
 
     option.value = bank;
     option.textContent = bank;
@@ -3839,30 +3042,19 @@ function updateWithdrawalCalculation(){
     return;
   }
 
-  const source =
-    document.getElementById("withdrawSource").value;
+  const source = document.getElementById("withdrawSource").value;
 
-  const localAmount =
-    Number(
-      document.getElementById("withdrawAmount").value
-    ) || 0;
+  const localAmount = Number(
+    document.getElementById("withdrawAmount").value
+  ) || 0;
 
-  const amount =
-    localToUSD(
-      localAmount,
-      user
-    );
+  const amount = localToUSD(localAmount,user);
 
-  const fee =
-    source === "bonus"
-      ? BONUS_WITHDRAWAL_FEE
-      : MINER_WITHDRAWAL_FEE;
+  const fee = source === "bonus"
+    ? BONUS_WITHDRAWAL_FEE
+    : MINER_WITHDRAWAL_FEE;
 
-  const net =
-    Math.max(
-      0,
-      amount - fee
-    );
+  const net = Math.max(0,amount - fee);
 
   document.getElementById("withdrawFee").textContent =
     formatMoney(fee,user);
@@ -3870,40 +3062,31 @@ function updateWithdrawalCalculation(){
   document.getElementById("withdrawNet").textContent =
     formatMoney(net,user);
 
-  const balance =
-    getWithdrawalBalance(user,source);
+  const balance = getWithdrawalBalance(user,source);
 
   document.getElementById("withdrawBalance").textContent =
     formatMoney(balance,user);
 
-  const currency =
-    getCurrency(user.country);
+  const currency = getCurrency(user.country);
 
   document.getElementById("withdrawAmount").placeholder =
-    getText("enterAmount") +
-    " (" +
-    currency.symbol +
-    ")";
+    getText("enterAmount") + " (" + currency.symbol + ")";
 
 }
 
-document
-  .getElementById("withdrawSource")
-  .addEventListener("change",() => {
+document.getElementById("withdrawSource").addEventListener("change",() => {
 
-    document.getElementById("withdrawAmount").value = "";
+  document.getElementById("withdrawAmount").value = "";
 
-    updateBankOptions();
-    updateWithdrawalCalculation();
+  updateBankOptions();
+  updateWithdrawalCalculation();
 
-  });
+});
 
-document
-  .getElementById("withdrawAmount")
-  .addEventListener(
-    "input",
-    updateWithdrawalCalculation
-  );
+document.getElementById("withdrawAmount").addEventListener(
+  "input",
+  updateWithdrawalCalculation
+);
 
 function submitWithdrawal(){
 
@@ -3920,45 +3103,49 @@ function submitWithdrawal(){
     settleMining(user);
   }
 
-  const source =
-    document.getElementById("withdrawSource").value;
+  const source = document.getElementById("withdrawSource").value;
+  const isBonusWithdrawal = source === "bonus";
 
-  const isBonusWithdrawal =
-    source === "bonus";
+  /*
+    IMPORTANT CORRECTION:
+    Reject bonus withdrawals immediately, before validating the amount,
+    reading bank details, changing balances, or creating a transaction.
+    The bonus option remains visible in the dropdown, but it cannot be
+    used to withdraw bonus funds.
+  */
+  if(isBonusWithdrawal){
 
-  const withdrawalFee =
-    isBonusWithdrawal
-      ? BONUS_WITHDRAWAL_FEE
-      : MINER_WITHDRAWAL_FEE;
+    alert("Bonus withdrawals are currently disabled.");
 
-  const localAmount =
-    Number(
-      document.getElementById("withdrawAmount").value
-    );
+    document.getElementById("withdrawAmount").value = "";
 
-  const amount =
-    localToUSD(
-      localAmount,
-      user
-    );
+    updateWithdrawalCalculation();
 
-  const bank =
-    document.getElementById("withdrawBank").value;
+    return;
 
-  const account =
-    document
-      .getElementById("withdrawAccount")
-      .value
-      .trim();
+  }
 
-  const accountName =
-    document
-      .getElementById("withdrawName")
-      .value
-      .trim();
+  const withdrawalFee = MINER_WITHDRAWAL_FEE;
 
-  const available =
-    getWithdrawalBalance(user,source);
+  const localAmount = Number(
+    document.getElementById("withdrawAmount").value
+  );
+
+  const amount = localToUSD(localAmount,user);
+
+  const bank = document.getElementById("withdrawBank").value;
+
+  const account = document
+    .getElementById("withdrawAccount")
+    .value
+    .trim();
+
+  const accountName = document
+    .getElementById("withdrawName")
+    .value
+    .trim();
+
+  const available = getWithdrawalBalance(user,"miner");
 
   if(
     !localAmount ||
@@ -3967,20 +3154,14 @@ function submitWithdrawal(){
     amount <= 0
   ){
 
-    alert(
-      getText("validWithdrawal")
-    );
-
+    alert(getText("validWithdrawal"));
     return;
 
   }
 
   if(amount > available){
 
-    alert(
-      getText("greaterBalance")
-    );
-
+    alert(getText("greaterBalance"));
     return;
 
   }
@@ -3990,10 +3171,7 @@ function submitWithdrawal(){
     alert(
       getText("greaterFee") +
       " " +
-      formatMoney(
-        withdrawalFee,
-        user
-      ) +
+      formatMoney(withdrawalFee,user) +
       "."
     );
 
@@ -4003,52 +3181,35 @@ function submitWithdrawal(){
 
   if(!bank || !account || !accountName){
 
-    alert(
-      getText("bankDetails")
-    );
-
+    alert(getText("bankDetails"));
     return;
 
   }
 
-  const net =
-    amount - withdrawalFee;
+  const net = amount - withdrawalFee;
 
-  if(isBonusWithdrawal){
+  /*
+    Only the miner/account balance withdrawal path is allowed below.
+    Bonus balances are not modified by this function.
+  */
 
-    user.bonusBalance =
-      Math.max(
-        0,
-        Number(user.bonusBalance || 0) - amount
-      );
+  const liveEarnings = getLiveMiningEarnings(user);
+  const settledBalance = Number(user.balance || 0);
+
+  if(amount <= settledBalance){
+
+    user.balance = settledBalance - amount;
 
   }else{
 
-    const liveEarnings =
-      getLiveMiningEarnings(user);
+    const livePortion = amount - settledBalance;
 
-    const settledBalance =
-      Number(user.balance || 0);
+    user.balance = 0;
 
-    if(amount <= settledBalance){
-
-      user.balance =
-        settledBalance - amount;
-
-    }else{
-
-      const livePortion =
-        amount - settledBalance;
-
-      user.balance = 0;
-
-      user.miner.earnings =
-        Math.max(
-          0,
-          liveEarnings - livePortion
-        );
-
-    }
+    user.miner.earnings = Math.max(
+      0,
+      liveEarnings - livePortion
+    );
 
   }
 
@@ -4056,36 +3217,23 @@ function submitWithdrawal(){
 
     id:
       "TXN-" +
-      Math.random()
-        .toString(36)
-        .substring(2,8)
-        .toUpperCase() +
-      Date.now()
-        .toString()
-        .slice(-8),
+      Math.random().toString(36).substring(2,8).toUpperCase() +
+      Date.now().toString().slice(-8),
 
     date:new Date().toISOString(),
 
     type:"Withdrawal",
-
-    source:
-      isBonusWithdrawal
-        ? "Bonus"
-        : "Miner",
-
+    source:"Miner",
     amount:amount,
     fee:withdrawalFee,
     net:net,
-
     bank:bank,
     account:account,
     accountName:accountName,
-
     status:"Pending",
 
     pendingUntil:
-      Date.now() +
-      WITHDRAWAL_PENDING_DURATION
+      Date.now() + WITHDRAWAL_PENDING_DURATION
 
   };
 
@@ -4101,20 +3249,16 @@ function submitWithdrawal(){
   updateDashboard();
   renderHistory();
 
-  alert(
-    getText("withdrawalSubmitted")
-  );
+  alert(getText("withdrawalSubmitted"));
 
   showPage("history");
 
 }
 
-document
-  .getElementById("submitWithdrawalBtn")
-  .addEventListener(
-    "click",
-    submitWithdrawal
-  );
+document.getElementById("submitWithdrawalBtn").addEventListener(
+  "click",
+  submitWithdrawal
+);
 
 /* =========================================================
    WITHDRAWAL STATUS
@@ -4124,10 +3268,7 @@ function updateWithdrawalStatuses(){
 
   const user = getCurrentUser();
 
-  if(
-    !user ||
-    !Array.isArray(user.transactions)
-  ){
+  if(!user || !Array.isArray(user.transactions)){
     return;
   }
 
@@ -4142,9 +3283,7 @@ function updateWithdrawalStatuses(){
     ){
 
       tx.status = "Withdrawn";
-
-      tx.approvedAt =
-        new Date().toISOString();
+      tx.approvedAt = new Date().toISOString();
 
       changed = true;
 
@@ -4166,25 +3305,19 @@ function startWithdrawalStatusTimer(){
 
   updateWithdrawalStatuses();
 
-  withdrawalInterval =
-    setInterval(() => {
+  withdrawalInterval = setInterval(() => {
 
-      const user = getCurrentUser();
+    const user = getCurrentUser();
 
-      if(!user){
+    if(!user){
+      clearInterval(withdrawalInterval);
+      return;
+    }
 
-        clearInterval(
-          withdrawalInterval
-        );
+    updateWithdrawalStatuses();
+    renderHistory();
 
-        return;
-
-      }
-
-      updateWithdrawalStatuses();
-      renderHistory();
-
-    },1000);
+  },1000);
 
 }
 
@@ -4202,14 +3335,9 @@ function renderHistory(){
 
   updateWithdrawalStatuses();
 
-  const body =
-    document.getElementById("historyBody");
-
-  const empty =
-    document.getElementById("historyEmpty");
-
-  const table =
-    document.getElementById("historyTable");
+  const body = document.getElementById("historyBody");
+  const empty = document.getElementById("historyEmpty");
+  const table = document.getElementById("historyTable");
 
   if(!user.transactions.length){
 
@@ -4223,74 +3351,41 @@ function renderHistory(){
   empty.classList.add("hidden");
   table.classList.remove("hidden");
 
-  body.innerHTML =
-    user.transactions
-      .map((tx,index) => {
+  body.innerHTML = user.transactions.map((tx,index) => {
 
-        const date =
-          new Date(tx.date).toLocaleString();
+    const date = new Date(tx.date).toLocaleString();
 
-        return `
+    return `
+      <tr>
+        <td>${escapeHtml(tx.id)}</td>
+        <td>${escapeHtml(date)}</td>
+        <td>${formatMoney(tx.amount,user)}</td>
+        <td>${formatMoney(tx.fee,user)}</td>
+        <td>${formatMoney(tx.net,user)}</td>
+        <td>
+          <span class="status ${
+            tx.status === "Withdrawn" ? "completed" : "pending"
+          }">
+            ${escapeHtml(tx.status)}
+          </span>
+        </td>
+        <td>
+          <button
+            class="secondary-btn"
+            type="button"
+            onclick="viewTransaction(${index})"
+          >
+            ${getText("view")}
+          </button>
+        </td>
+      </tr>
+    `;
 
-          <tr>
-
-            <td>
-              ${escapeHtml(tx.id)}
-            </td>
-
-            <td>
-              ${escapeHtml(date)}
-            </td>
-
-            <td>
-              ${formatMoney(tx.amount,user)}
-            </td>
-
-            <td>
-              ${formatMoney(tx.fee,user)}
-            </td>
-
-            <td>
-              ${formatMoney(tx.net,user)}
-            </td>
-
-            <td>
-
-              <span
-                class="status ${
-                  tx.status === "Withdrawn"
-                    ? "completed"
-                    : "pending"
-                }"
-              >
-                ${escapeHtml(tx.status)}
-              </span>
-
-            </td>
-
-            <td>
-
-              <button
-                class="secondary-btn"
-                type="button"
-                onclick="viewTransaction(${index})"
-              >
-                ${getText("view")}
-              </button>
-
-            </td>
-
-          </tr>
-
-        `;
-
-      })
-      .join("");
+  }).join("");
 
 }
 
-window.viewTransaction =
-function(index){
+window.viewTransaction = function(index){
 
   const user = getCurrentUser();
 
@@ -4300,11 +3395,8 @@ function(index){
 
   updateWithdrawalStatuses();
 
-  const refreshedUser =
-    getCurrentUser();
-
-  const tx =
-    refreshedUser.transactions[index];
+  const refreshedUser = getCurrentUser();
+  const tx = refreshedUser.transactions[index];
 
   if(!tx){
     return;
@@ -4315,155 +3407,102 @@ function(index){
   let statusText = tx.status;
   let approvalText = "";
 
-  if(
-    tx.status === "Pending" &&
-    tx.pendingUntil
-  ){
+  if(tx.status === "Pending" && tx.pendingUntil){
 
-    const remaining =
-      Math.max(
-        0,
-        Number(tx.pendingUntil) - Date.now()
-      );
+    const remaining = Math.max(
+      0,
+      Number(tx.pendingUntil) - Date.now()
+    );
 
-    statusText =
-      "Pending — " +
-      formatPendingTime(remaining);
+    statusText = "Pending — " + formatPendingTime(remaining);
 
   }
 
-  if(
-    tx.status === "Withdrawn" &&
-    tx.approvedAt
-  ){
+  if(tx.status === "Withdrawn" && tx.approvedAt){
 
     approvalText = `
-
       <div class="fee-row">
-
-        <span>
-          ${getText("approved")}
-        </span>
-
+        <span>${getText("approved")}</span>
         <strong>
-          ${escapeHtml(
-            new Date(
-              tx.approvedAt
-            ).toLocaleString()
-          )}
+          ${escapeHtml(new Date(tx.approvedAt).toLocaleString())}
         </strong>
-
       </div>
-
     `;
 
   }
 
-  document
-    .getElementById("transactionDetails")
-    .innerHTML = `
+  document.getElementById("transactionDetails").innerHTML = `
+    <div class="fee-box">
 
-      <div class="fee-box">
-
-        <div class="fee-row">
-          <span>${getText("id")}</span>
-          <strong>${escapeHtml(tx.id)}</strong>
-        </div>
-
-        <div class="fee-row">
-          <span>${getText("date")}</span>
-          <strong>
-            ${escapeHtml(
-              new Date(tx.date).toLocaleString()
-            )}
-          </strong>
-        </div>
-
-        <div class="fee-row">
-          <span>${getText("type")}</span>
-          <strong>${escapeHtml(tx.type)}</strong>
-        </div>
-
-        <div class="fee-row">
-          <span>${getText("source")}</span>
-          <strong>
-            ${escapeHtml(tx.source || "Miner")}
-          </strong>
-        </div>
-
-        <div class="fee-row">
-          <span>${getText("amount")}</span>
-          <strong>
-            ${formatMoney(tx.amount,refreshedUser)}
-          </strong>
-        </div>
-
-        <div class="fee-row">
-          <span>${getText("fee")}</span>
-          <strong>
-            ${formatMoney(tx.fee,refreshedUser)}
-          </strong>
-        </div>
-
-        <div class="fee-row">
-          <span>${getText("net")}</span>
-          <strong>
-            ${formatMoney(tx.net,refreshedUser)}
-          </strong>
-        </div>
-
-        <div class="fee-row">
-          <span>${getText("bank")}</span>
-          <strong>
-            ${escapeHtml(tx.bank)}
-          </strong>
-        </div>
-
-        <div class="fee-row">
-          <span>${getText("accountNumber")}</span>
-          <strong>
-            ${escapeHtml(tx.account)}
-          </strong>
-        </div>
-
-        <div class="fee-row">
-          <span>${getText("accountName")}</span>
-          <strong>
-            ${escapeHtml(tx.accountName)}
-          </strong>
-        </div>
-
-        <div class="fee-row">
-          <span>${getText("status")}</span>
-          <strong>
-            ${escapeHtml(statusText)}
-          </strong>
-        </div>
-
-        ${approvalText}
-
+      <div class="fee-row">
+        <span>${getText("id")}</span>
+        <strong>${escapeHtml(tx.id)}</strong>
       </div>
 
-    `;
+      <div class="fee-row">
+        <span>${getText("date")}</span>
+        <strong>${escapeHtml(new Date(tx.date).toLocaleString())}</strong>
+      </div>
 
-  document
-    .getElementById("transactionModal")
-    .classList.remove("hidden");
+      <div class="fee-row">
+        <span>${getText("type")}</span>
+        <strong>${escapeHtml(tx.type)}</strong>
+      </div>
+
+      <div class="fee-row">
+        <span>${getText("source")}</span>
+        <strong>${escapeHtml(tx.source || "Miner")}</strong>
+      </div>
+
+      <div class="fee-row">
+        <span>${getText("amount")}</span>
+        <strong>${formatMoney(tx.amount,refreshedUser)}</strong>
+      </div>
+
+      <div class="fee-row">
+        <span>${getText("fee")}</span>
+        <strong>${formatMoney(tx.fee,refreshedUser)}</strong>
+      </div>
+
+      <div class="fee-row">
+        <span>${getText("net")}</span>
+        <strong>${formatMoney(tx.net,refreshedUser)}</strong>
+      </div>
+
+      <div class="fee-row">
+        <span>${getText("bank")}</span>
+        <strong>${escapeHtml(tx.bank)}</strong>
+      </div>
+
+      <div class="fee-row">
+        <span>${getText("accountNumber")}</span>
+        <strong>${escapeHtml(tx.account)}</strong>
+      </div>
+
+      <div class="fee-row">
+        <span>${getText("accountName")}</span>
+        <strong>${escapeHtml(tx.accountName)}</strong>
+      </div>
+
+      <div class="fee-row">
+        <span>${getText("status")}</span>
+        <strong>${escapeHtml(statusText)}</strong>
+      </div>
+
+      ${approvalText}
+
+    </div>
+  `;
+
+  document.getElementById("transactionModal").classList.remove("hidden");
 
 };
 
 function formatPendingTime(ms){
 
-  const totalSeconds =
-    Math.ceil(
-      Math.max(0,ms) / 1000
-    );
-
-  const minutes =
-    Math.floor(totalSeconds / 60);
-
-  const seconds =
-    totalSeconds % 60;
+  const totalSeconds = Math.ceil(Math.max(0,ms) / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
 
   return (
     String(minutes).padStart(2,"0") +
@@ -4473,45 +3512,30 @@ function formatPendingTime(ms){
 
 }
 
-document
-  .getElementById("closeModal")
-  .addEventListener("click",() => {
-
-    document
-      .getElementById("transactionModal")
-      .classList.add("hidden");
-
-  });
+document.getElementById("closeModal").addEventListener("click",() => {
+  document.getElementById("transactionModal").classList.add("hidden");
+});
 
 /* =========================================================
    LANGUAGE BUTTONS
    ========================================================= */
 
-document
-  .querySelectorAll(".lang-btn")
-  .forEach(btn => {
+document.querySelectorAll(".lang-btn").forEach(btn => {
 
-    btn.addEventListener("click",() => {
+  btn.addEventListener("click",() => {
 
-      const user =
-        getCurrentUser();
+    const user = getCurrentUser();
 
-      applyLanguage(
-        btn.dataset.lang
-      );
+    applyLanguage(btn.dataset.lang);
 
-      if(user){
-
-        user.language =
-          btn.dataset.lang;
-
-        saveCurrentUser(user);
-
-      }
-
-    });
+    if(user){
+      user.language = btn.dataset.lang;
+      saveCurrentUser(user);
+    }
 
   });
+
+});
 
 /* =========================================================
    LOGOUT
@@ -4519,52 +3543,31 @@ document
 
 function logoutUser(){
 
-  localStorage.removeItem(
-    STORAGE_CURRENT
-  );
+  localStorage.removeItem(STORAGE_CURRENT);
 
   if(minerInterval){
-
     clearInterval(minerInterval);
     minerInterval = null;
-
   }
 
   if(bonusInterval){
-
     clearInterval(bonusInterval);
     bonusInterval = null;
-
   }
 
   if(withdrawalInterval){
-
     clearInterval(withdrawalInterval);
     withdrawalInterval = null;
-
   }
 
-  document
-    .getElementById("authForm")
-    .reset();
+  document.getElementById("authForm").reset();
 
   showAuth("login");
 
 }
 
-document
-  .getElementById("logoutBtn")
-  .addEventListener(
-    "click",
-    logoutUser
-  );
-
-document
-  .getElementById("dashboardLogoutBtn")
-  .addEventListener(
-    "click",
-    logoutUser
-  );
+document.getElementById("logoutBtn").addEventListener("click",logoutUser);
+document.getElementById("dashboardLogoutBtn").addEventListener("click",logoutUser);
 
 /* =========================================================
    UTILS
@@ -4602,26 +3605,20 @@ function renderAll(){
 
 function boot(){
 
-  const loading =
-    document.getElementById("loading");
+  const loading = document.getElementById("loading");
 
   try{
 
-    const user =
-      getCurrentUser();
+    const user = getCurrentUser();
 
     if(user){
 
-      const countryLang =
-        getLanguageForCountry(user.country);
+      const countryLang = getLanguageForCountry(user.country);
 
-      user.language =
-        countryLang;
-
+      user.language = countryLang;
       repairUser(user);
 
-      const refreshed =
-        getCurrentUser();
+      const refreshed = getCurrentUser();
 
       if(
         refreshed &&
@@ -4629,69 +3626,48 @@ function boot(){
         refreshed.miner.running &&
         Date.now() >= Number(refreshed.miner.endTime)
       ){
-
         settleMining(refreshed);
-
       }
 
       updateWithdrawalStatuses();
 
-      currentLanguage =
-        countryLang;
-
-      localStorage.setItem(
-        STORAGE_LANG,
-        countryLang
-      );
+      currentLanguage = countryLang;
+      localStorage.setItem(STORAGE_LANG,countryLang);
 
       applyLanguage(countryLang);
-
       enterApp();
 
-      const refreshedUser =
-        getCurrentUser();
+      const refreshedUser = getCurrentUser();
 
       if(
         refreshedUser &&
         refreshedUser.miner &&
         refreshedUser.miner.running
       ){
-
         startMinerTimer();
-
       }
 
     }else{
 
       currentLanguage = "en";
-
       showAuth("register");
-
       applyLanguage("en");
 
     }
 
   }catch(error){
 
-    console.error(
-      "NexaVest startup error:",
-      error
-    );
+    console.error("NexaVest startup error:",error);
 
     try{
 
       currentLanguage = "en";
-
       showAuth("register");
-
       applyLanguage("en");
 
     }catch(fallbackError){
 
-      console.error(
-        "NexaVest fallback error:",
-        fallbackError
-      );
+      console.error("NexaVest fallback error:",fallbackError);
 
     }
 
